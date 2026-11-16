@@ -83,3 +83,4 @@ footer { border-top: 1px solid var(--line); margin-top: 2rem; padding-top: 1rem;
   .mark.on { background: #fff; color: #000; border: 2px solid #000; }
   .fav, .box, .stuck, .example, .next { break-inside: avoid; }
 }
+.who { background: #fff; }

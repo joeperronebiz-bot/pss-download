@@ -15,6 +15,15 @@
     canSave = false;
     data = {};
   }
+  // Name and date are now asked once (q1 keys). Older saves asked on each system.
+  ["name", "date"].forEach(function (f) {
+    var k = "q1-f-" + f;
+    if (typeof data[k] === "string" && data[k].trim()) return;
+    var old = ["q2-f-" + f, "q3-f-" + f].map(function (o) { return data[o]; })
+      .filter(function (v) { return typeof v === "string" && v.trim(); })[0];
+    if (old) data[k] = old;
+  });
+
   if (!canSave && state) {
     state.textContent = "Saving is turned off in this browser, so your answers will not stay if you leave this page. Use Copy my answers before you go, or open this page in your phone's regular web browser.";
     state.className = "savestate warn";
@@ -43,6 +52,44 @@
     if (p) p.classList.toggle("on", el.checked);
   }
 
+  // Step 3 auto-fill from Systems 1 and 2. A filled-in Step 3 box keeps
+  // updating only while it holds our own text; once the person edits it, it is theirs.
+  function val(k) { return typeof data[k] === "string" ? data[k].trim() : ""; }
+  function part(k, lead) {
+    var v = val(k).replace(lead, "").replace(/[.\s]+$/, "").trim();
+    return v || "______";
+  }
+  var sources = {
+    q1: function () {
+      if (!val("q1-f-i-help") && !val("q1-f-with") && !val("q1-f-so-they-can")) return "";
+      return "I help " + part("q1-f-i-help", /^i help\s+/i) + " with " + part("q1-f-with", /^with\s+/i) +
+        " so they can " + part("q1-f-so-they-can", /^so they can\s+/i) + ".";
+    },
+    q2: function () {
+      return ["q2-f-keep-1", "q2-f-keep-2", "q2-f-keep-3"].map(val).filter(Boolean).join("\n");
+    }
+  };
+  var autoTargets = Array.prototype.slice.call(document.querySelectorAll("[data-autofill]"));
+  function autofill(skip) {
+    var changed = false;
+    autoTargets.forEach(function (el) {
+      if (el === skip) return;
+      var k = el.getAttribute("data-key"), flag = k + "--auto";
+      var mine = data[flag] === true;
+      if (el.value.trim() && !mine) return;
+      var v = sources[el.getAttribute("data-autofill")]();
+      if (el.value !== v) {
+        el.value = v;
+        data[k] = v;
+        grow(el);
+        changed = true;
+      }
+      if (v) { if (!mine) { data[flag] = true; changed = true; } }
+      else if (mine) { delete data[flag]; changed = true; }
+    });
+    return changed;
+  }
+
   fields.forEach(function (el) {
     var k = el.getAttribute("data-key");
     el.id = el.id || k;
@@ -59,11 +106,14 @@
       grow(el);
       el.addEventListener("input", function () {
         data[k] = el.value;
+        if (el.hasAttribute("data-autofill")) delete data[k + "--auto"];
         grow(el);
+        autofill(el);
         save();
       });
     }
   });
+  if (autofill()) save();
   window.addEventListener("load", function () { fields.forEach(grow); });
 
   function copyText(text, done) {
@@ -94,6 +144,11 @@
 
   function allAnswers() {
     var out = ["The 3 Questions. Perrone Strategic Systems.", ""];
+    Array.prototype.forEach.call(document.querySelectorAll("#who [data-key]"), function (el) {
+      var v = el.value.trim();
+      out.push(el.getAttribute("data-label") + ":" + (v ? " " + v : ""));
+    });
+    if (out.length > 2) out.push("");
     Array.prototype.forEach.call(document.querySelectorAll("section.sys"), function (sec) {
       out.push(sec.getAttribute("data-title"));
       Array.prototype.forEach.call(sec.querySelectorAll("[data-key]"), function (el) {
@@ -136,7 +191,14 @@
   Array.prototype.forEach.call(document.querySelectorAll(".js-copy-prompt"), function (btn) {
     btn.addEventListener("click", function () {
       var pre = btn.previousElementSibling;
-      copyText(pre.textContent, function (ok) {
+      var text = pre.textContent;
+      if (pre.hasAttribute("data-fill-prompt")) {
+        var s1 = document.querySelector("[data-key='q3-f-q1-sentence']").value.trim();
+        var s2 = document.querySelector("[data-key='q3-f-q2-phrases']").value.trim();
+        if (s1) text = text.replace("[paste your System 1 sentence]", s1);
+        if (s2) text = text.replace("[paste your System 2 phrases]", s2.replace(/\s*\n\s*/g, "; "));
+      }
+      copyText(text, function (ok) {
         flash(btn, ok ? "Copied" : "Could not copy. Press and hold the prompt to copy it.");
       });
     });

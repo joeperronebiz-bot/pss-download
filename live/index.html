@@ -20,6 +20,7 @@
   </ul>
 
   <div class="howto" id="howto">
+    <p><strong>About 10 minutes total.</strong></p>
     <p><strong>Where to type:</strong> tap a box and type, right here on this page. Nothing to download.</p>
     <p><strong>Where your answers save:</strong> on this phone only, in this browser. Nothing is sent anywhere.</p>
     <p><strong>Where the help is:</strong> at the bottom of each section, with a prompt you can copy into an AI chat tool. Or just fill it in yourself. <a href="#help1">Go to the help for System 1</a>.</p>
@@ -32,21 +33,26 @@
     <p class="copied js-copied" role="status" aria-live="polite"></p>
   </div>
 
+  <div class="box who" id="who">
+    <div class="row2">
+      <label class="fld"><span class="lbl">Your name</span><input type="text" data-key="q1-f-name" data-label="Your name" autocomplete="off"></label>
+      <label class="fld"><span class="lbl">Date</span><input type="text" data-key="q1-f-date" data-label="Date" autocomplete="off"></label>
+    </div>
+  </div>
+
   <!-- SYSTEM 1 -->
   <section class="sys" id="s1" data-title="1. Who you serve, or your ideal client.">
     <p class="eyebrow">Step 1 of 3</p>
     <h2>1. Who you serve, or your ideal client.</h2>
     <p class="lead">You already know more of this than you think.</p>
+    <p class="lead">Stuck? The help is at the <a href="#help1">bottom of this section</a>.</p>
     <p class="intro">From memory, name 3 to 5 people you’re glad to work with. Tick only the marks that are true for each person. Leave the rest blank. You do not need to dig through old records first.</p>
-    <p class="meta">Step 1 of 3 · One sitting, from memory. Aim for about 10 minutes for all three.</p>
-
-    <div class="row2">
-      <label class="fld"><span class="lbl">Your name</span><input type="text" data-key="q1-f-name" data-label="Your name" autocomplete="off"></label>
-      <label class="fld"><span class="lbl">Date</span><input type="text" data-key="q1-f-date" data-label="Date" autocomplete="off"></label>
-    </div>
+    <p class="meta">Step 1 of 3 · One sitting, from memory.</p>
 
     <p class="hint">Write first names only. A few is enough. The people with the most ticks are the ones to build your sentence around.</p>
     <p class="stuck"><span>Stuck here?</span> Can’t think of 3 favorites? Start with the last customer you were glad to see.</p>
+
+    <p class="hint legend">Again = I’d gladly do this again. Paid = paid on time. Fair = the pay felt fair. Smooth = the work went smoothly. Referred = they sent someone or left a review.</p>
 
     <div class="favs">
       <div class="fav example" aria-label="Example">
@@ -107,7 +113,6 @@
         </div>
       </div>
     </div>
-    <p class="hint">Again = I’d gladly do this again. Paid = paid on time. Fair = the pay felt fair. Smooth = the work went smoothly. Referred = they sent someone or left a review.</p>
 
     <label class="fld"><span class="lbl q">What is the same about these favorites? What do they ask for, or thank you for?</span>
       <textarea rows="3" data-key="q1-f-alike" data-label="What is the same about these favorites? What do they ask for, or thank you for?"></textarea></label>
@@ -152,12 +157,7 @@ What do they have in common? Help me fill in: I help [this type of person] with 
     <h2>2. Why they pick you.</h2>
     <p class="lead">Stuck? The help is at the <a href="#help2">bottom of this section</a>.</p>
     <p class="intro">From memory, write what those favorite customers say about working with you, and what they say again and again about the work itself. Keep their wording. Do not clean it up, and do not add praise they did not say.</p>
-    <p class="meta">Step 2 of 3 · One sitting, from memory. Aim for about 10 minutes for all three.</p>
-
-    <div class="row2">
-      <label class="fld"><span class="lbl">Your name</span><input type="text" data-key="q2-f-name" data-label="Your name" autocomplete="off"></label>
-      <label class="fld"><span class="lbl">Date</span><input type="text" data-key="q2-f-date" data-label="Date" autocomplete="off"></label>
-    </div>
+    <p class="meta">Step 2 of 3 · One sitting, from memory.</p>
 
     <label class="fld"><span class="lbl">The favorites I’m thinking of (from System 1)</span>
       <textarea rows="2" data-key="q2-f-favorites" data-label="The favorites I’m thinking of (from System 1)"></textarea></label>
@@ -209,17 +209,12 @@ Pull out the exact phrases they repeat, using their words, not yours.</pre>
     <h2>3. Your business in one sentence.</h2>
     <p class="lead">Stuck? The help is at the <a href="#help3">bottom of this section</a>.</p>
     <p class="intro">Don’t list your services. Write what is better for the customer when you’re done. Use the words your favorites already say. A friend should know what you do after hearing it once.</p>
-    <p class="meta">Step 3 of 3 · One sitting, from memory. Aim for about 10 minutes for all three.</p>
-
-    <div class="row2">
-      <label class="fld"><span class="lbl">Your name</span><input type="text" data-key="q3-f-name" data-label="Your name" autocomplete="off"></label>
-      <label class="fld"><span class="lbl">Date</span><input type="text" data-key="q3-f-date" data-label="Date" autocomplete="off"></label>
-    </div>
+    <p class="meta">Step 3 of 3 · One sitting, from memory.</p>
 
     <label class="fld"><span class="lbl">From System 1. I help ______ with ______ so they can ______.</span>
-      <textarea rows="3" data-key="q3-f-q1-sentence" data-label="From System 1. I help ______ with ______ so they can ______."></textarea></label>
+      <textarea rows="3" data-key="q3-f-q1-sentence" data-autofill="q1" data-label="From System 1. I help ______ with ______ so they can ______."></textarea></label>
     <label class="fld"><span class="lbl">From System 2. The phrases you’ll use in your sentence.</span>
-      <textarea rows="3" data-key="q3-f-q2-phrases" data-label="From System 2. The phrases you’ll use in your sentence."></textarea></label>
+      <textarea rows="3" data-key="q3-f-q2-phrases" data-autofill="q2" data-label="From System 2. The phrases you’ll use in your sentence."></textarea></label>
     <p class="stuck"><span>Stuck here?</span> Don’t have System 1 or System 2 in front of you? Look back, or write those answers from memory now.</p>
 
     <div class="box">
@@ -244,7 +239,7 @@ Pull out the exact phrases they repeat, using their words, not yours.</pre>
       <p>You know your business. The tool just does the sorting. You decide. The tool only suggests. Open ChatGPT at <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">https://chatgpt.com</a>.</p>
       <p>Leave out customer last names, phone numbers, and addresses before you paste.</p>
       <h4>Even faster. Paste this</h4>
-      <pre class="prompt">Here is who I help: [paste your System 1 sentence]
+      <pre class="prompt" data-fill-prompt>Here is who I help: [paste your System 1 sentence]
 Here is what my favorites repeat about the work: [paste your System 2 phrases]
 
 Give me 5 versions of this sentence, in plain words: After we’re done, you ______.</pre>
