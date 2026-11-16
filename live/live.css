@@ -70,11 +70,19 @@ input[type="text"]:focus, textarea:focus { border-color: var(--forest); backgrou
 .next a { text-decoration: none; display: block; min-height: 44px; }
 footer { border-top: 1px solid var(--line); margin-top: 2rem; padding-top: 1rem; font-size: 0.95rem; color: var(--muted); }
 
+.savestate:empty { display: none; margin: 0; }
+details.fold-hint { margin: 0 0 1rem; }
+details > summary { display: block; min-height: 44px; padding: 0.55rem 0; font-family: "Fraunces", Georgia, serif; font-size: 1.25rem; font-weight: 700; line-height: 1.25; color: var(--forest); cursor: pointer; list-style: none; overflow-wrap: break-word; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+details.fold-hint > summary { font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 1.125rem; }
+details > summary::-webkit-details-marker, details > summary::marker { display: none; content: none; }
+
 @media print {
   @page { margin: 14mm; }
+  details { break-inside: avoid; }
+  .help { display: block !important; }
   body { background: #fff; font-size: 11pt; }
   .wrap { width: 100%; padding: 0; }
-  .tools, .btn, .howto, .three, .help, .next a[href] { display: none !important; }
+  .tools, .btn, .howto, .three, .next a[href] { display: none !important; }
   .logo { width: 45mm; }
   .sys { border: 0; padding: 0; margin: 0; break-before: page; }
   .sys:first-of-type { break-before: auto; }

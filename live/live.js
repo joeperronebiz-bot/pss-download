@@ -195,8 +195,8 @@
       if (pre.hasAttribute("data-fill-prompt")) {
         var s1 = document.querySelector("[data-key='q3-f-q1-sentence']").value.trim();
         var s2 = document.querySelector("[data-key='q3-f-q2-phrases']").value.trim();
-        if (s1) text = text.replace("[paste your System 1 sentence]", s1);
-        if (s2) text = text.replace("[paste your System 2 phrases]", s2.replace(/\s*\n\s*/g, "; "));
+        if (s1) text = text.replace("[paste your Question 1 sentence]", s1);
+        if (s2) text = text.replace("[paste your Question 2 phrases]", s2.replace(/\s*\n\s*/g, "; "));
       }
       copyText(text, function (ok) {
         flash(btn, ok ? "Copied" : "Could not copy. Press and hold the prompt to copy it.");
@@ -234,6 +234,47 @@
         if (el.type === "checkbox") { el.checked = false; markState(el); }
         else { el.value = ""; grow(el); }
       });
+    });
+  });
+
+  function openHelp(id) {
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    else {
+      var wrap = el.closest("details");
+      if (wrap) wrap.open = true;
+    }
+    if (el.scrollIntoView) el.scrollIntoView();
+  }
+
+  function openHelpFromHash() {
+    var id = (window.location.hash || "").replace(/^#/, "");
+    if (id === "help1" || id === "help2" || id === "help3") openHelp(id);
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[href^='#']");
+    if (!a) return;
+    var id = (a.getAttribute("href") || "").replace(/^#/, "");
+    if (id === "help1" || id === "help2" || id === "help3") openHelp(id);
+  });
+
+  window.addEventListener("hashchange", openHelpFromHash);
+  openHelpFromHash();
+
+  var printOpenState = [];
+  window.addEventListener("beforeprint", function () {
+    printOpenState = [];
+    Array.prototype.forEach.call(document.querySelectorAll("details"), function (d) {
+      printOpenState.push(d.open);
+      d.open = true;
+    });
+  });
+  window.addEventListener("afterprint", function () {
+    Array.prototype.forEach.call(document.querySelectorAll("details"), function (d, i) {
+      if (i < printOpenState.length) d.open = printOpenState[i];
     });
   });
 })();
