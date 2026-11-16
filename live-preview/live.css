@@ -1,0 +1,94 @@
+@font-face { font-family: "Fraunces"; src: url("../assets/fonts/Fraunces-Display.woff2") format("woff2"); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("../assets/fonts/AtkinsonHyperlegible-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("../assets/fonts/AtkinsonHyperlegible-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+:root { --cream: #f5f0e6; --forest: #1f4d3f; --gold: #9a6418; --ink: #1c1b18; --paper: #fffcf6; --line: #d9cbb0; --muted: #4a463e; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--cream); color: var(--ink); font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 1.125rem; line-height: 1.55; overflow-wrap: break-word; }
+.wrap { width: min(40rem, calc(100% - 2rem)); margin: 0 auto; padding: 1.25rem 0 2.5rem; }
+.logo { display: block; width: min(16rem, 70%); height: auto; margin-bottom: 1rem; }
+h1 { font-family: "Fraunces", Georgia, serif; color: var(--forest); font-size: 2rem; line-height: 1.15; margin: 0 0 0.8rem; }
+h2 { font-family: "Fraunces", Georgia, serif; color: var(--forest); font-size: 1.6rem; line-height: 1.2; margin: 0.2rem 0 0.6rem; }
+h3 { font-family: "Fraunces", Georgia, serif; color: var(--forest); font-size: 1.25rem; line-height: 1.25; margin: 0 0 0.7rem; }
+h4 { font-size: 1.05rem; color: var(--gold); margin: 1.1rem 0 0.4rem; }
+a { color: var(--forest); }
+p { margin: 0 0 0.8rem; }
+.three { list-style: none; padding: 0.6rem 1rem; margin: 0 0 1rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; font-weight: 700; }
+.three li a { display: block; padding: 0.55rem 0; min-height: 44px; text-decoration: none; }
+.howto { background: var(--paper); border-left: 5px solid var(--gold); border-radius: 6px; padding: 0.9rem 1rem 0.3rem; margin: 0 0 1rem; }
+.howto a { display: inline-block; min-height: 44px; padding: 0.55rem 0; }
+.savestate { font-weight: 700; color: var(--forest); }
+.savestate.warn { color: #7a2e12; }
+.tools { margin: 0 0 1.5rem; }
+.btn { display: block; width: 100%; text-align: center; background: var(--forest); color: #fff; border: 2px solid var(--forest); font: inherit; font-weight: 700; font-size: 1.2rem; padding: 0.85rem 1rem; border-radius: 10px; min-height: 3.25rem; margin: 0 0 0.7rem; cursor: pointer; -webkit-appearance: none; appearance: none; touch-action: manipulation; }
+.btn-alt { background: var(--paper); color: var(--forest); }
+.btn-ghost { background: transparent; color: var(--muted); border-color: var(--line); font-size: 1.05rem; margin-top: 1rem; }
+.btn-small { font-size: 1.05rem; min-height: 48px; padding: 0.6rem 1rem; }
+.btn:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.copied { min-height: 1.6em; margin: 0; font-weight: 700; color: var(--forest); text-align: center; }
+.sys { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1rem 1rem; margin: 0 0 1.5rem; scroll-margin-top: 0.5rem; }
+.eyebrow, .meta, .lbl, .stuck span { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.85rem; font-weight: 700; color: var(--gold); }
+.eyebrow { margin: 0; }
+.lead { font-weight: 700; }
+.intro { font-style: italic; font-family: "Fraunces", Georgia, serif; font-size: 1.1rem; }
+.meta { color: var(--muted); }
+.hint { color: var(--muted); font-size: 1rem; }
+.stuck { font-size: 1rem; background: var(--cream); border-radius: 6px; padding: 0.5rem 0.7rem; }
+.stuck span { margin-right: 0.3rem; }
+.fld { display: block; margin: 0 0 0.8rem; }
+.fld .lbl { display: block; margin: 0 0 0.3rem; color: var(--forest); }
+.fld .lbl.q { text-transform: none; letter-spacing: 0; font-size: 1.05rem; color: var(--gold); }
+input[type="text"], textarea { display: block; width: 100%; font: inherit; font-size: 18px; line-height: 1.4; color: var(--ink); background: var(--paper); border: 2px solid #b9a98a; border-radius: 8px; padding: 0.7rem 0.75rem; min-height: 52px; -webkit-appearance: none; appearance: none; }
+textarea { resize: vertical; overflow: hidden; }
+input[type="text"]:focus, textarea:focus { border-color: var(--forest); background: #fff; }
+.row2 { display: grid; grid-template-columns: 1fr; gap: 0 0.8rem; }
+@media (min-width: 30rem) { .row2 { grid-template-columns: 1fr 1fr; } }
+.favs { display: grid; gap: 0.8rem; margin: 0 0 0.8rem; }
+.fav { border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem 0.8rem 0.6rem; background: var(--paper); }
+.fav .fld { margin-bottom: 0.6rem; }
+.fav.example { border-left: 5px solid var(--gold); }
+.fav.example .lbl, .example .lbl { margin: 0 0 0.2rem; }
+.exname { font-weight: 700; font-size: 1.2rem; margin: 0 0 0.4rem; }
+.exmarks { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.exmarks li { border: 2px solid var(--line); border-radius: 999px; padding: 0.2rem 0.7rem; font-size: 0.95rem; color: var(--muted); }
+.exmarks li.on { border-color: var(--forest); background: var(--forest); color: #fff; }
+.exmarks li.on::before { content: "\2713\00a0"; }
+.marks { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.mark { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 0 0.9rem; border: 2px solid #b9a98a; border-radius: 999px; background: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.mark input { position: absolute; opacity: 0; width: 100%; height: 100%; left: 0; top: 0; margin: 0; cursor: pointer; }
+.mark:has(input:checked), .mark.on { background: var(--forest); border-color: var(--forest); color: #fff; }
+.mark.on span::before { content: "\2713\00a0"; }
+.mark:has(input:focus-visible) { outline: 3px solid var(--gold); outline-offset: 2px; }
+.box { border: 2px solid var(--forest); border-radius: 10px; padding: 0.9rem 0.9rem 0.3rem; margin: 0 0 1rem; }
+.chk { display: flex; align-items: flex-start; gap: 0.75rem; min-height: 48px; padding: 0.4rem 0; cursor: pointer; }
+.chk input { flex: 0 0 auto; width: 30px; height: 30px; margin: 0.1rem 0 0; accent-color: var(--forest); cursor: pointer; }
+.example { background: var(--cream); border-radius: 6px; padding: 0.5rem 0.7rem; }
+.help { background: var(--paper); border: 2px solid var(--gold); border-radius: 10px; padding: 0.9rem 0.9rem 0.3rem; margin: 0 0 1rem; scroll-margin-top: 0.5rem; }
+.help a { word-break: break-all; }
+.prompt { white-space: pre-wrap; font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 1rem; background: #fff; border: 1px dashed #b9a98a; border-radius: 6px; padding: 0.7rem; margin: 0 0 0.6rem; }
+.next { font-size: 1.05rem; background: var(--cream); border-radius: 6px; padding: 0.6rem 0.8rem; }
+.next a { text-decoration: none; display: block; min-height: 44px; }
+footer { border-top: 1px solid var(--line); margin-top: 2rem; padding-top: 1rem; font-size: 0.95rem; color: var(--muted); }
+
+.savestate:empty { display: none; margin: 0; }
+details.fold-hint { margin: 0 0 1rem; }
+details > summary { display: block; min-height: 44px; padding: 0.55rem 0; font-family: "Fraunces", Georgia, serif; font-size: 1.25rem; font-weight: 700; line-height: 1.25; color: var(--forest); cursor: pointer; list-style: none; overflow-wrap: break-word; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+details.fold-hint > summary { font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 1.125rem; }
+details > summary::-webkit-details-marker, details > summary::marker { display: none; content: none; }
+
+@media print {
+  @page { margin: 14mm; }
+  details { break-inside: avoid; }
+  .help { display: block !important; }
+  body { background: #fff; font-size: 11pt; }
+  .wrap { width: 100%; padding: 0; }
+  .tools, .btn, .howto, .three, .next a[href] { display: none !important; }
+  .logo { width: 45mm; }
+  .sys { border: 0; padding: 0; margin: 0; break-before: page; }
+  .sys:first-of-type { break-before: auto; }
+  input[type="text"], textarea { border: 1px solid #999; background: #fff; min-height: 0; padding: 4pt 6pt; font-size: 11pt; }
+  .mark { border: 1px solid #999; min-height: 0; padding: 2pt 8pt; }
+  .mark.on { background: #fff; color: #000; border: 2px solid #000; }
+  .fav, .box, .stuck, .example, .next { break-inside: avoid; }
+}
+.who { background: #fff; }
