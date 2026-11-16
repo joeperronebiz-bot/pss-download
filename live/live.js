@@ -128,7 +128,7 @@
   Array.prototype.forEach.call(document.querySelectorAll(".js-copy-all"), function (btn) {
     btn.addEventListener("click", function () {
       copyText(allAnswers(), function (ok) {
-        flash(btn, ok ? "Copied" : "Could not copy here. Try Print or Save as PDF.");
+        flash(btn, ok ? "Copied" : (inApp ? "Could not copy here. " + printNote : "Could not copy here. Try Print or Save as PDF."));
       });
     });
   });
@@ -141,6 +141,20 @@
       });
     });
   });
+
+  var inApp = /FBAN|FBAV|FB_IAB|Instagram/i.test(navigator.userAgent || "");
+  var printNote = "To print or save as PDF, open this page in your phone's regular web browser.";
+  if (inApp) {
+    Array.prototype.forEach.call(document.querySelectorAll(".js-print"), function (btn) {
+      var p = document.createElement("p");
+      p.className = "hint print-note";
+      p.textContent = printNote;
+      btn.parentNode.replaceChild(p, btn);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".js-keep-hint"), function (el) {
+      el.textContent = "To keep a copy of your answers, use Copy my answers and paste them into a note or a text to yourself.";
+    });
+  }
 
   Array.prototype.forEach.call(document.querySelectorAll(".js-print"), function (btn) {
     btn.addEventListener("click", function () {
