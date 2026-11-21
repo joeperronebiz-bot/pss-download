@@ -234,6 +234,8 @@
         if (el.type === "checkbox") { el.checked = false; markState(el); }
         else { el.value = ""; grow(el); }
       });
+      extraFavs.forEach(function (row) { row.classList.remove("is-shown", "has-data"); });
+      refreshExtraFavs();
     });
   });
 
@@ -277,4 +279,38 @@
       if (i < printOpenState.length) d.open = printOpenState[i];
     });
   });
+
+  var addFavBtn = document.querySelector(".js-add-fav");
+  var extraFavs = Array.prototype.slice.call(document.querySelectorAll(".fav.is-extra"));
+  function favHasData(row) {
+    return Array.prototype.some.call(row.querySelectorAll("[data-key]"), function (el) {
+      return el.type === "checkbox" ? el.checked : !!(el.value && String(el.value).trim());
+    });
+  }
+  function refreshExtraFavs() {
+    var laterShown = false;
+    for (var i = extraFavs.length - 1; i >= 0; i--) {
+      var row = extraFavs[i];
+      var has = favHasData(row);
+      row.classList.toggle("has-data", has);
+      if (has || laterShown) row.classList.add("is-shown");
+      laterShown = laterShown || row.classList.contains("is-shown");
+    }
+    if (addFavBtn) {
+      var allShown = extraFavs.every(function (row) { return row.classList.contains("is-shown"); });
+      addFavBtn.hidden = allShown;
+    }
+  }
+  if (addFavBtn) {
+    addFavBtn.addEventListener("click", function () {
+      var next;
+      extraFavs.some(function (row) {
+        if (!row.classList.contains("is-shown")) { next = row; return true; }
+        return false;
+      });
+      if (next) next.classList.add("is-shown");
+      refreshExtraFavs();
+    });
+  }
+  refreshExtraFavs();
 })();

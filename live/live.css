@@ -76,8 +76,15 @@ details > summary { display: block; min-height: 44px; padding: 0.55rem 0; font-f
 details.fold-hint > summary { font-family: "Atkinson Hyperlegible", Arial, sans-serif; font-size: 1.125rem; }
 details > summary::-webkit-details-marker, details > summary::marker { display: none; content: none; }
 
+.fav.is-extra { display: none; }
+.fav.is-extra.is-shown { display: block; }
+.js-add-fav { margin: 0 0 1rem; }
+.js-add-fav[hidden] { display: none !important; }
+
 @media print {
   @page { margin: 14mm; }
+  .fav.is-extra { display: none; }
+  .fav.is-extra.has-data, .fav.is-extra.is-shown { display: block; }
   details { break-inside: avoid; }
   .help { display: block !important; }
   body { background: #fff; font-size: 11pt; }
